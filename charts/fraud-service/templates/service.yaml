@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-fraud
   ports:
-    - port: {{ .Values.fraud.port }}
-      targetPort: {{ .Values.fraud.port }}
-  type: {{ .Values.fraud.service.type }}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

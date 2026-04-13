@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-transaction
   ports:
-    - port: {{ .Values.transaction.port }}
-      targetPort: {{ .Values.transaction.port }}
-  type: {{ .Values.transaction.service.type }}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

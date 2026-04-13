@@ -4,9 +4,9 @@ metadata:
   name: {{ .Chart.Name }}-frontend-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.frontend.service.type }}
+  type: {{ .Values.service.type }}
   selector:
     app: {{ .Chart.Name }}-frontend
   ports:
-  - port: {{ .Values.frontend.port }}
-    targetPort: {{ .Values.frontend.port }}
+  - port: {{ .Values.port }}
+    targetPort: {{ .Values.port }}

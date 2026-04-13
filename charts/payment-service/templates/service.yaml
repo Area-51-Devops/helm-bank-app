@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-payment
   ports:
-    - port: {{ .Values.payment.port }}
-      targetPort: {{ .Values.payment.port }}
-  type: {{ .Values.payment.service.type }}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

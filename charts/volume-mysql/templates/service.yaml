@@ -8,4 +8,4 @@ spec:
   selector:
     app: {{ .Chart.Name }}-mysql
   ports:
-  - port: {{ .Values.mysql.port }}
+  - port: {{ .Values.port }}

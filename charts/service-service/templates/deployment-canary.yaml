@@ -5,9 +5,9 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Chart.Name }}-service
-    version: {{ .Values.service.canary.version }}
+    version: {{ .Values.canary.version }}
 spec:
-  replicas: {{ .Values.service.canary.replicas }}
+  replicas: {{ .Values.canary.replicas }}
   selector:
     matchLabels:
       app: {{  .Chart.Name }}-service
@@ -15,41 +15,41 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}-service
-        version: {{ .Values.service.canary.version }}
+        version: {{ .Values.canary.version }}
     spec:
       containers:
         - name: {{ .Chart.Name }}-service-container
-          image: {{ .Values.service.canary.image.repository }}:{{ .Values.service.canary.image.tag }}
+          image: {{ .Values.canary.image.repository }}:{{ .Values.canary.image.tag }}
           resources:
             requests:
-              memory: {{ .Values.service.canary.resources.requests.memory }}
-              cpu: {{ .Values.service.canary.resources.requests.cpu }}
+              memory: {{ .Values.canary.resources.requests.memory }}
+              cpu: {{ .Values.canary.resources.requests.cpu }}
             limits:
-              memory: {{ .Values.service.canary.resources.limits.memory }}
-              cpu: {{ .Values.service.canary.resources.limits.cpu }}
+              memory: {{ .Values.canary.resources.limits.memory }}
+              cpu: {{ .Values.canary.resources.limits.cpu }}
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: {{ .Values.port }}
           envFrom:
             - configMapRef:
                 name: {{ .Chart.Name }}-service-config
           startupProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 5
             failureThreshold: 30
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 3

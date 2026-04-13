@@ -10,7 +10,7 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: {{ .Values.reporting.gateway.path }}
+        value: {{ .Values.gateway.path }}
     filters:
     - type: URLRewrite
       urlRewrite:
@@ -19,4 +19,4 @@ spec:
           replacePrefixMatch: /
     backendRefs:
     - name: {{ .Chart.Name }}-reporting-service
-      port: {{ .Values.reporting.port }}
+      port: {{ .Values.port }}

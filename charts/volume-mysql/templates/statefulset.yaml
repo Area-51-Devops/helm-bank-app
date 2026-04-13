@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   serviceName: {{ .Chart.Name }}-mysql-service
-  replicas: {{ .Values.mysql.replicas }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Chart.Name }}-mysql
@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: {{ .Chart.Name }}-init-mysql
-          image: {{ .Values.mysql.image }}
+          image: {{ .Values.image }}
           command:
             - bash
             - "-c"
@@ -41,25 +41,25 @@ spec:
               mountPath: /mnt/config-map
       containers:
         - name: {{ .Chart.Name }}-mysql
-          image: {{ .Values.mysql.image }}
+          image: {{ .Values.image }}
           ports:
             - name: {{ .Chart.Name }}-mysql
-              containerPort: {{ .Values.mysql.port }}
+              containerPort: {{ .Values.port }}
           resources:
             requests:
-              cpu: {{ .Values.mysql.resources.requests.cpu }}
-              memory: {{ .Values.mysql.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
             limits:
-              cpu: {{ .Values.mysql.resources.limits.cpu }}
-              memory: {{ .Values.mysql.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Chart.Name }}-mysql-secret
-                  key: {{ .Values.mysql.env.secret.key }}
+                  key: {{ .Values.env.secret.key }}
             - name: MYSQL_DATABASE
-              value: {{ .Values.mysql.env.mySqlDbName }}
+              value: {{ .Values.env.mySqlDbName }}
             - name: MYSQL_ROOT_HOST
               value: "%"
           volumeMounts:

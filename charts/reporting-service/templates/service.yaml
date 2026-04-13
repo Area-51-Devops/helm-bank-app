@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-reporting
   ports:
-  - port: {{ .Values.reporting.port }}
-    targetPort: {{ .Values.reporting.port }}
-  type: {{ .Values.reporting.service.type }}
+  - port: {{ .Values.port }}
+    targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

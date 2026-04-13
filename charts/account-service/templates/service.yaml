@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-account
   ports:
-    - port: {{ .Values.account.port }}
-      targetPort: {{ .Values.account.port }}
-  type: {{ .Values.account.service.type }}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

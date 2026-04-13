@@ -4,4 +4,4 @@ metadata:
   name: {{ .Chart.Name }}-service-config
   namespace: {{ .Release.Namespace }}
 data:
-  PORT: "{{ .Values.service.port }}"
+  PORT: "{{ .Values.port }}"

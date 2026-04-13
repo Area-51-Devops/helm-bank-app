@@ -4,9 +4,9 @@ metadata:
   name: {{ .Chart.Name }}-redis-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.redis.service.type }}
+  type: {{ .Values.service.type }}
   selector:
     app: {{ .Chart.Name }}-redis
   ports:
-  - port: {{ .Values.redis.port }}
-    targetPort: {{ .Values.redis.port }}
+  - port: {{ .Values.port }}
+    targetPort: {{ .Values.port }}

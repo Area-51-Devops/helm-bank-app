@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-loan
   ports:
-  - port: {{ .Values.loan.port }}
-    targetPort: {{ .Values.loan.port }}
-  type: {{ .Values.loan.service.type }}
+  - port: {{ .Values.port }}
+    targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

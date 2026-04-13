@@ -10,7 +10,7 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: {{ .Values.frontend.gateway.path }}
+        value: {{ .Values.gateway.path }}
     backendRefs:
     - name: {{ .Chart.Name }}-frontend-service
-      port: {{ .Values.frontend.port }}
+      port: {{ .Values.port }}

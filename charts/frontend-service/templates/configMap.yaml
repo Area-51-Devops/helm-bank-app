@@ -4,8 +4,8 @@ metadata:
   name: {{ .Chart.Name }}-frontend-config
   namespace: {{ .Values.namespace }}
 data:
-  USER_URL: {{ .Values.frontend.env.userUrl }}
-  ACCOUNT_URL: {{ .Values.frontend.env.accountUrl }}
-  TX_URL: {{ .Values.frontend.env.txUrl }}
-  LOAN_URL: {{ .Values.frontend.env.loanUrl }}
-  REPORT_URL: {{ .Values.frontend.env.reportUrl }}
+  USER_URL: {{ .Values.env.userUrl }}
+  ACCOUNT_URL: {{ .Values.env.accountUrl }}
+  TX_URL: {{ .Values.env.txUrl }}
+  LOAN_URL: {{ .Values.env.loanUrl }}
+  REPORT_URL: {{ .Values.env.reportUrl }}

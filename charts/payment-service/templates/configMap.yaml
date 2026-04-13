@@ -4,4 +4,4 @@ metadata:
   name: {{ .Chart.Name }}-payment-config
   namespace: {{ .Values.namespace }}
 data:
-  PORT: "{{ .Values.payment.port }}"
+  PORT: "{{ .Values.port }}"

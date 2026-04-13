@@ -4,7 +4,7 @@ metadata:
   name: {{ .Chart.Name }}-reporting-config
   namespace: {{ .Values.namespace }}
 data:
-  DB_HOST: "{{ .Values.reporting.env.dbHost }}"
-  DB_USER: "{{ .Values.reporting.env.dbUser }}"
-  DB_NAME: "{{ .Values.reporting.env.dbName }}"
-  PORT: "{{ .Values.reporting.port }}"
+  DB_HOST: "{{ .Values.env.dbHost }}"
+  DB_USER: "{{ .Values.env.dbUser }}"
+  DB_NAME: "{{ .Values.env.dbName }}"
+  PORT: "{{ .Values.port }}"

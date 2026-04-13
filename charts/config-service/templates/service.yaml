@@ -4,9 +4,9 @@ metadata:
   name: {{ .Chart.Name }}-config-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.config.service.type }}
+  type: {{ .Values.service.type }}
   selector:
     app: {{ .Chart.Name }}-config
   ports:
-    - port: {{ .Values.config.port }}
-      targetPort: {{ .Values.config.port }}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}

@@ -5,9 +5,9 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Chart.Name }}-fraud
-    version: {{ .Values.fraud.canary.version }}
+    version: {{ .Values.canary.version }}
 spec:
-  replicas: {{ .Values.fraud.canary.replicas }}
+  replicas: {{ .Values.canary.replicas }}
   selector:
     matchLabels:
       app: {{ .Chart.Name }}-fraud
@@ -15,41 +15,41 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}-fraud
-        version: {{ .Values.fraud.canary.version }}
+        version: {{ .Values.canary.version }}
     spec:
       containers:
         - name: {{ .Chart.Name }}-fraud-container
-          image: {{ .Values.fraud.canary.image.repository }}:{{ .Values.fraud.canary.image.tag }}
+          image: {{ .Values.canary.image.repository }}:{{ .Values.canary.image.tag }}
           resources:
             requests:
-              memory: {{ .Values.fraud.canary.resources.requests.memory }}
-              cpu: {{ .Values.fraud.canary.resources.requests.cpu }}
+              memory: {{ .Values.canary.resources.requests.memory }}
+              cpu: {{ .Values.canary.resources.requests.cpu }}
             limits:
-              memory: {{ .Values.fraud.canary.resources.limits.memory }}
-              cpu: {{ .Values.fraud.canary.resources.limits.cpu }}
+              memory: {{ .Values.canary.resources.limits.memory }}
+              cpu: {{ .Values.canary.resources.limits.cpu }}
           ports:
-            - containerPort: {{ .Values.fraud.port }}
+            - containerPort: {{ .Values.port }}
           envFrom:
             - configMapRef:
                 name: {{ .Chart.Name }}-fraud-config
           startupProbe:
             httpGet:
               path: /health
-              port: {{ .Values.fraud.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 5
             failureThreshold: 30
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.fraud.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.fraud.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 3

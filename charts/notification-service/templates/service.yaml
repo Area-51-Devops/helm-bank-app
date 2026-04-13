@@ -7,6 +7,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}-notification
   ports:
-  - port: {{ .Values.notification.port }}
-    targetPort: {{ .Values.notification.port }}
-  type: {{ .Values.notification.service.type }}
+  - port: {{ .Values.port }}
+    targetPort: {{ .Values.port }}
+  type: {{ .Values.service.type }}

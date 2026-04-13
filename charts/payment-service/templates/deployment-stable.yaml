@@ -5,10 +5,10 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Chart.Name }}-payment
-    version: {{ .Values.payment.stable.version }}
+    version: {{ .Values.stable.version }}
 
 spec:
-  replicas: {{ .Values.payment.stable.replicas }}
+  replicas: {{ .Values.stable.replicas }}
 
   selector:
     matchLabels:
@@ -18,24 +18,24 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}-payment
-        version: {{ .Values.payment.stable.version }}
+        version: {{ .Values.stable.version }}
 
     spec:
       containers:
         - name: {{ .Chart.Name }}-payment-container
 
-          image: {{ .Values.payment.stable.image.repository }}:{{ .Values.payment.stable.image.tag }}
+          image: {{ .Values.stable.image.repository }}:{{ .Values.stable.image.tag }}
 
           resources:
             requests:
-              memory: {{ .Values.payment.stable.resources.requests.memory }}
-              cpu: {{ .Values.payment.stable.resources.requests.cpu }}
+              memory: {{ .Values.stable.resources.requests.memory }}
+              cpu: {{ .Values.stable.resources.requests.cpu }}
             limits:
-              memory: {{ .Values.payment.stable.resources.limits.memory }}
-              cpu: {{ .Values.payment.stable.resources.limits.cpu }}
+              memory: {{ .Values.stable.resources.limits.memory }}
+              cpu: {{ .Values.stable.resources.limits.cpu }}
 
           ports:
-            - containerPort: {{ .Values.payment.port }}
+            - containerPort: {{ .Values.port }}
 
           envFrom:
             - secretRef:
@@ -46,7 +46,7 @@ spec:
           startupProbe:
             httpGet:
               path: /health
-              port: {{ .Values.payment.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 5
             failureThreshold: 30
             periodSeconds: 5
@@ -54,7 +54,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.payment.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 3
@@ -62,7 +62,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.payment.port }}
+              port: {{ .Values.port }}
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 3

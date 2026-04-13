@@ -5,9 +5,9 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Chart.Name }}-notification
-    version: {{ .Values.notification.canary.version }}
+    version: {{ .Values.canary.version }}
 spec:
-  replicas: {{ .Values.notification.canary.replicas }}
+  replicas: {{ .Values.canary.replicas }}
   selector:
     matchLabels:
       app: {{ .Chart.Name }}-notification
@@ -15,41 +15,41 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}-notification
-        version: {{ .Values.notification.canary.version }}
+        version: {{ .Values.canary.version }}
     spec:
       containers:
       - name: {{ .Chart.Name }}-notification-container
-        image: {{ .Values.notification.canary.image.repository }}:{{ .Values.notification.canary.image.tag }}
+        image: {{ .Values.canary.image.repository }}:{{ .Values.canary.image.tag }}
         resources:
           requests:
-            memory: {{ .Values.notification.canary.resources.requests.memory }}
-            cpu: {{ .Values.notification.canary.resources.requests.cpu }}
+            memory: {{ .Values.canary.resources.requests.memory }}
+            cpu: {{ .Values.canary.resources.requests.cpu }}
           limits:
-            memory: {{ .Values.notification.canary.resources.limits.memory }}
-            cpu: {{ .Values.notification.canary.resources.limits.cpu }}
+            memory: {{ .Values.canary.resources.limits.memory }}
+            cpu: {{ .Values.canary.resources.limits.cpu }}
         ports:
-        - containerPort: {{ .Values.notification.port }}
+        - containerPort: {{ .Values.port }}
         envFrom:
         - configMapRef:
             name: {{ .Chart.Name }}-notification-config
         startupProbe:
           httpGet:
             path: /health
-            port: {{ .Values.notification.port }}
+            port: {{ .Values.port }}
           initialDelaySeconds: 5
           failureThreshold: 30
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /health
-            port: {{ .Values.notification.port }}
+            port: {{ .Values.port }}
           initialDelaySeconds: 10
           periodSeconds: 5
           failureThreshold: 3
         livenessProbe:
           httpGet:
             path: /health
-            port: {{ .Values.notification.port }}
+            port: {{ .Values.port }}
           initialDelaySeconds: 30
           periodSeconds: 10
           failureThreshold: 3

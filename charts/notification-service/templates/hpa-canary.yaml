@@ -8,12 +8,12 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ .Chart.Name }}-notification-deployment-canary
-  minReplicas: {{ .Values.notification.canary.hpa.minReplicas }}
-  maxReplicas: {{ .Values.notification.canary.hpa.maxReplicas }}
+  minReplicas: {{ .Values.canary.hpa.minReplicas }}
+  maxReplicas: {{ .Values.canary.hpa.maxReplicas }}
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: {{ .Values.notification.canary.hpa.resource.cpu.UtilizationPercentage }}
+        averageUtilization: {{ .Values.canary.hpa.resource.cpu.UtilizationPercentage }}

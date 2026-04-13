@@ -4,7 +4,7 @@ metadata:
   name: {{ .Chart.Name }}-redis-deployment
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: {{ .Values.redis.replicas }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Chart.Name }}-redis
@@ -15,18 +15,18 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}-redis-container
-        image: {{ .Values.redis.image }}
+        image: {{ .Values.image }}
         command: ["redis-server", "--appendonly", "yes"]
         ports:
-        - containerPort: {{ .Values.redis.port }}
+        - containerPort: {{ .Values.port }}
 
         resources:
           requests:
-            memory: {{ .Values.redis.resources.requests.memory }}
-            cpu: {{ .Values.redis.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
           limits:
-            memory: {{ .Values.redis.resources.limits.memory }}
-            cpu: {{ .Values.redis.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
         startupProbe:
           exec:
             command:
