@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "volume-redis.fullname" . }}
-  labels:
-    {{- include "volume-redis.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-redis-service
+  namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  type: {{ .Values.redis.service.type }}
   selector:
-    {{- include "volume-redis.selectorLabels" . | nindent 4 }}
+    app: {{ .Chart.Name }}-redis
+  ports:
+  - port: {{ .Values.redis.port }}
+    targetPort: {{ .Values.redis.port }}

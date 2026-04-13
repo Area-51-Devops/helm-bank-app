@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "config-service.fullname" . }}
-  labels:
-    {{- include "config-service.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-config-service
+  namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  type: {{ .Values.config.service.type }}
   selector:
-    {{- include "config-service.selectorLabels" . | nindent 4 }}
+    app: {{ .Chart.Name }}-config
+  ports:
+    - port: {{ .Values.config.port }}
+      targetPort: {{ .Values.config.port }}

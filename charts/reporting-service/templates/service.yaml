@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "reporting-service.fullname" . }}
-  labels:
-    {{- include "reporting-service.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-reporting-service
+  namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
   selector:
-    {{- include "reporting-service.selectorLabels" . | nindent 4 }}
+    app: {{ .Chart.Name }}-reporting
+  ports:
+  - port: {{ .Values.reporting.port }}
+    targetPort: {{ .Values.reporting.port }}
+  type: {{ .Values.reporting.service.type }}

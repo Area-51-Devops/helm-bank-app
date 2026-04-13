@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "frontend-service.fullname" . }}
-  labels:
-    {{- include "frontend-service.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-frontend-service
+  namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  type: {{ .Values.frontend.service.type }}
   selector:
-    {{- include "frontend-service.selectorLabels" . | nindent 4 }}
+    app: {{ .Chart.Name }}-frontend
+  ports:
+  - port: {{ .Values.frontend.port }}
+    targetPort: {{ .Values.frontend.port }}
