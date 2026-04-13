@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   PORT: "{{ .Values.port }}"
-  ACCOUNT_SVC_URL: "http://{{ .Chart.Name }}-account-service:{{ .Values.account-service.port }}"
+  ACCOUNT_SVC_URL: "http://{{ .Chart.Name }}-account-service:{{ .Values.global.accountService.port }}"

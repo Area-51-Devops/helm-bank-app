@@ -1,3 +1,7 @@
+global:
+  accountService:
+    port: 3002
+
 account-service:
   namespace: "backend"
   stable:
