@@ -43,8 +43,7 @@ spec:
         - name: {{ .Chart.Name }}-mysql
           image: {{ .Values.image }}
           ports:
-            - name: {{ .Chart.Name }}-mysql
-              containerPort: {{ .Values.port }}
+            - containerPort: {{ .Values.port }}
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
